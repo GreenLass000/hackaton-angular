@@ -14,16 +14,20 @@ import { ReqresService } from '../reqres.service';
 export class HomeComponent {
   userLogin: any;
   data: any;
-page:any;
+  page: number = 1;
+  minpage: number = 1;
+  maxpage: number = 2;
   constructor(private router: Router, private reqres: ReqresService) {
     this.userLogin = localStorage.getItem("user");
 
     if (this.userLogin == null) {
       this.router.navigateByUrl("/login");
     } else {
-      this.reqres.retornarTodos(1).subscribe(result => this.data = result);
+      this.reqres.retornarTodos(this.page).subscribe(result => this.data = result);
+
 
     }
+
   }
 
   borrar(id: number) {
@@ -33,7 +37,21 @@ page:any;
 
   }
 
-  getDetail(id:number){
-    this.router.navigateByUrl('/user-detail/'+id);
+  anterior() {
+    if (this.page > this.minpage) {
+      --this.page;
+    }
+    this.reqres.retornarTodos(this.page).subscribe(result => this.data = result);
+  }
+  
+  posterior() {
+    if (this.page < this.maxpage) {
+      ++this.page;
+    }
+    this.reqres.retornarTodos(this.page).subscribe(result => this.data = result);
+  }
+
+  getDetail(id: number) {
+    this.router.navigateByUrl('/user-detail/' + id);
   }
 }
