@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReqresService } from '../reqres.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   rememberMe = false;
   errorMessage = '';
 
-  constructor(private readonly reqresService: ReqresService) { }
+  constructor(private readonly reqresService: ReqresService, private router: Router) { }
 
   ngOnInit(): void { }
 

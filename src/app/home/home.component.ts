@@ -31,12 +31,12 @@ export class HomeComponent {
   borrar(id: number) {
     this.reqres.borrarUsuario(id)
       .subscribe(() => {
-        //alert('Se ha eliminado el usuario' + id);
+        alert('Se ha eliminado el usuario' + id);
       });
   }
 
   insertar(){
-    
+
   }
 
   editar(id: number) {
