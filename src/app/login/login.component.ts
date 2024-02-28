@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.reqresService.getLoginToken(this.email, this.password).subscribe({
       next: (response) => {
         localStorage.setItem("user", response.token);
-        this.router.navigateByUrl("/login");
+        this.router.navigateByUrl("/home");
       },
       error: (error) => {
         this.errorMessage = error.message;

@@ -33,11 +33,7 @@ export class ReqresService {
   // Consultar un unico usuario
   retornarUno(user: number) {
     return this.http.get(`https://reqres.in/api/users/${user}`).pipe(
-<<<<<<< HEAD
       map((response: any) => response.data) );;
-=======
-      map((response: any) => response.data));
->>>>>>> 804892cf3bc1c87cf01ca147c1881a3b3e469ff0
   }
 
   // Insertar
