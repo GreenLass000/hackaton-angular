@@ -1,24 +1,39 @@
 import { Component } from '@angular/core';
-import { ReqresService } from '../reqres.service';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  template: `
+    <main class="form-signin w-100 m-auto">
+      <form (ngSubmit)="onSubmit()">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+        <div class="form-floating">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="email">
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="password">
+          <label for="floatingPassword">Password</label>
+        </div>
+
+        <div class="form-check text-start my-3">
+          <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" [(ngModel)]="rememberMe">
+          <label class="form-check-label" for="flexCheckDefault">
+            Remember me
+          </label>
+        </div>
+        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-body-secondary">&copy; 2017-2024</p>
+      </form>
+    </main>
+  `
 })
 export class LoginComponent {
+  email: string = '';
+  password: string = '';
+  rememberMe: boolean = false;
 
-  constructor(private reqres: ReqresService) {
-  }
-
-  getToken(user: string, pass: string) {
-    let token = this.reqres.getLoginToken(user, pass);
-    console.log(token);
-  }
-
-  login_click() {
-    this.getToken("eve.holt@reqres.in", "cityslicka");
+  onSubmit() {
+    // Implementar lógica de inicio de sesión
   }
 }

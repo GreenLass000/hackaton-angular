@@ -2,3 +2,15 @@
     <h1>Prueba técnica</h1>
     <button (click)="btnClick()">Salir</button>
 </div>
+<div>
+    @for(usur of usuario;track $index){
+        <div>
+            <img src="{{usur.avatar}}" alt="{{usur.id}}">
+        </div>
+        <div>
+            <h1>{{usur.first_name}}</h1>
+            <hr>
+            <button>{{usur.email}}</button>
+        </div>
+    }
+</div>
