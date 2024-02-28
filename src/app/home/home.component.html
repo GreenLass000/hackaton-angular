@@ -1,3 +1,5 @@
 <div>
-    hola
+    @for(user of data; track user.id){
+        <p>{{user.first_name}}</p>
+    }
 </div>
