@@ -3,13 +3,15 @@
     <button (click)="btnLogin()">Salir</button>
 </div>
 <div class="datos">
-        <div>
-            <img src="{{usuario.data.avatar}}" alt="{{usuario.data.id}}">
+        <div class="imagen">
+            <img src="{{usuario.avatar}}" alt="{{usuario.id}}">
         </div>
         <div>
-            <h1>{{usuario.data.first_name}}</h1>
+            <h1>{{usuario.first_name}}</h1>
             <hr>
-            <button>{{usuario.data.email}}</button>
+            <button>{{usuario.email}}</button>
+            <br>
+            <br>
             <button (click)="btnHome()">Home</button>
         </div>
 </div>

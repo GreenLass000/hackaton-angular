@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,25 +16,24 @@ export class ReqresService {
    * @param pass Contraseña
    * @returns Token de acces
    */
-  getLoginToken(user: string, pass: string) {
-
-    let json = {
-      email: user,
-      password: pass
-    };
-
-    return this.http.post("https://reqres.in/api/login", JSON.stringify(json))
+  login(email: string, password: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const body = JSON.stringify({ email, password });
+    return this.http.post("https://reqres.in/api/login", body, { headers });
   }
 
   // Consultar todos los usuarios
   retornarTodos(pagina: number) {
     return this.http.get(`https://reqres.in/api/users?page=${pagina}`).pipe(
-      map((response: any) => response.data) );
+      map((response: any) => response.data));
   }
 
   // Consultar un unico usuario
   retornarUno(user: number) {
-    return this.http.get(`https://reqres.in/api/users/${user}`);
+    return this.http.get(`https://reqres.in/api/users/${user}`).pipe(
+      map((response: any) => response.data));
   }
 
   // Insertar

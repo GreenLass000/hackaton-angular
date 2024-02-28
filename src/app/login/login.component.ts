@@ -1,35 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ReqresService } from '../reqres.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css'],
+  standalone: true,
+  imports: [FormsModule, CommonModule]
 })
-export class LoginComponent {
-  @ViewChild('loginForm') loginForm: NgForm; // (o usa formularios reactivos)
+export class LoginComponent implements OnInit {
+  email = '';
+  password = '';
+  rememberMe = false;
+  errorMessage = '';
 
-  login_click(e: Event) {
-    e.preventDefault();
-    if (this.loginForm.valid) {
-      const email = this.loginForm.value.email;
-      const password = this.loginForm.value.password;
-      this.getLogin(email, password);
-    } else {
-      console.error('Form is invalid');
+  constructor(private readonly reqresService: ReqresService) { }
+
+  ngOnInit(): void { }
+
+  onSubmit(): void {
+    this.errorMessage = '';
+
+    if (!this.email || !this.password) {
+      this.errorMessage = 'Por favor, ingrese un correo electrónico y contraseña.';
+      return;
     }
-  }
 
-  getLogin(mail: string, pass: string) {
-    this.reqres.getLoginToken(mail, pass).subscribe((t: any) => {
-      localStorage.setItem("test", t.token);
-    })
+    this.reqresService.getLoginToken(this.email, this.password).subscribe({
+      next: (response) => {
+        // Almacenar el token y otros datos de la respuesta
+        console.log('Inicio de sesión exitoso', response);
+        // Redirigir a la página principal o al siguiente paso
+      },
+      error: (error) => {
+        this.errorMessage = error.message;
+      },
+    });
   }
-
-  // login_click(e: Event) {
-  //   e.preventDefault()
-  //   this.getLogin("eve.holt@reqres.in", "cityslicka");
-  // }
 }

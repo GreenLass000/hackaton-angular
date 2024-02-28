@@ -5,7 +5,17 @@
     align-items: center;
 }
 
+.imagen{
+    padding-right:3rem;
+    
+}
+
+img{
+    border-radius: 2rem;
+}
+
 .datos{
+    margin-top: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
