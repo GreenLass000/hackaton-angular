@@ -13,12 +13,12 @@ export class LoginComponent {
   constructor(private reqres: ReqresService) {
   }
 
-  checkLogin() {
-    let token: string | null = ;
+  getToken(user: string, pass: string) {
+    let token = this.reqres.getLoginToken(user, pass);
     console.log(token);
   }
 
   login_click() {
-    this.checkLogin();
+    this.getToken("eve.holt@reqres.in", "cityslicka");
   }
 }
