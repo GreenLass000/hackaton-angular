@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class ReqresService {
    * 
    * @param user Usuario
    * @param pass Contraseña
-   * @returns Token de acceso
+   * @returns Token de acces
    */
   getLoginToken(user: string, pass: string) {
 
@@ -28,12 +27,7 @@ export class ReqresService {
 
   // Consultar todos los usuarios
   retornarTodos(pagina: number) {
-    // let consulta=this.http.get(`https://reqres.in/api/users?page=${pagina}`);
-
-    // return consulta.data;
-    return this.http.get(`https://reqres.in/api/users?page=${pagina}`).pipe(
-      map((response: any) => response.data) // Mapear el resultado para devolver solo la propiedad 'data'
-    );
+    return this.http.get(`https://reqres.in/api/users?page=${pagina}`);
   }
 
   // Consultar un unico usuario

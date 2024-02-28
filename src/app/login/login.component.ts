@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       console.log('Form submitted!');
       console.log(this.loginForm.value);
-      // Aquí puedes enviar los datos del formulario a tu backend o realizar otras acciones.
     } else {
       console.log('Form invalid');
     }
