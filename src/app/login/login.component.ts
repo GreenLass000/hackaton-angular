@@ -1,29 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
+  imports: [],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) { }
-
-  ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
+export class LoginComponent {
+  checkLogin() {
+    let user: string | null = localStorage.getItem("user");
+    console.log(user);
   }
 
-  onSubmit() {
-    if (this.loginForm.valid) {
-      console.log('Form submitted!');
-      console.log(this.loginForm.value);
-    } else {
-      console.log('Form invalid');
-    }
+  login_click() {
+    this.checkLogin();
   }
 }
