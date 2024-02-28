@@ -1,24 +1,30 @@
-import { Component } from '@angular/core';
-import { ReqresService } from '../reqres.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
 
-  constructor(private reqres: ReqresService) {
+  constructor(private formBuilder: FormBuilder) { }
+
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
   }
 
-  getToken(user: string, pass: string) {
-    let token = this.reqres.getLoginToken(user, pass);
-    console.log(token);
-  }
-
-  login_click() {
-    this.getToken("eve.holt@reqres.in", "cityslicka");
+  onSubmit() {
+    if (this.loginForm.valid) {
+      console.log('Form submitted!');
+      console.log(this.loginForm.value);
+      // Aquí puedes enviar los datos del formulario a tu backend o realizar otras acciones.
+    } else {
+      console.log('Form invalid');
+    }
   }
 }
