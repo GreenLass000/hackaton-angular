@@ -4,12 +4,12 @@
 </div>
 <div class="datos">
         <div>
-            <img src="{{usuario.avatar}}" alt="{{usuario.id}}">
+            <img src="{{usuario.data.avatar}}" alt="{{usuario.data.id}}">
         </div>
         <div>
-            <h1>{{usuario.first_name}}</h1>
+            <h1>{{usuario.data.first_name}}</h1>
             <hr>
-            <button>{{usuario.email}}</button>
+            <button>{{usuario.data.email}}</button>
             <button (click)="btnHome()">Home</button>
         </div>
 </div>

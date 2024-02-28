@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ReqresService } from '../reqres.service';
 
 @Component({
   selector: 'app-login',
@@ -8,12 +9,27 @@ import { Component } from '@angular/core';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  checkLogin() {
-    let user: string | null = localStorage.getItem("user");
-    console.log(user);
+  @ViewChild('loginForm') loginForm: NgForm; // (o usa formularios reactivos)
+
+  login_click(e: Event) {
+    e.preventDefault();
+    if (this.loginForm.valid) {
+      const email = this.loginForm.value.email;
+      const password = this.loginForm.value.password;
+      this.getLogin(email, password);
+    } else {
+      console.error('Form is invalid');
+    }
   }
 
-  login_click() {
-    this.checkLogin();
+  getLogin(mail: string, pass: string) {
+    this.reqres.getLoginToken(mail, pass).subscribe((t: any) => {
+      localStorage.setItem("test", t.token);
+    })
   }
+
+  // login_click(e: Event) {
+  //   e.preventDefault()
+  //   this.getLogin("eve.holt@reqres.in", "cityslicka");
+  // }
 }

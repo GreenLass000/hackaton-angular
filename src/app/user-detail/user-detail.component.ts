@@ -12,8 +12,8 @@ import {ReqresService} from '../reqres.service';
 export class UserDetailComponent {
   usuario:any;
 
-  constructor(private router:Router,private usuarioUnicoSErvicio:ReqresService){
-    this.usuario=this.usuarioUnicoSErvicio.retornarUno(2);
+  constructor(private router:Router,private usuarioUnicoServicio:ReqresService){
+    this.usuario=this.usuarioUnicoServicio.retornarUno(2);
   }
 
   btnLogin() {
