@@ -33,4 +33,7 @@ page:any;
 
   }
 
+  getDetail(id:number){
+    this.router.navigateByUrl('/user-detail/'+id);
+  }
 }
