@@ -24,15 +24,21 @@ export class HomeComponent {
       this.router.navigateByUrl("/login");
     } else {
       this.reqres.retornarTodos(this.page).subscribe(result => this.data = result);
-
-
     }
 
   }
 
   borrar(id: number) {
-
+    this.reqres.borrarUsuario(id)
+      .subscribe(() => {
+        //alert('Se ha eliminado el usuario' + id);
+      });
   }
+
+  insertar(){
+    
+  }
+
   editar(id: number) {
 
   }
@@ -43,7 +49,7 @@ export class HomeComponent {
     }
     this.reqres.retornarTodos(this.page).subscribe(result => this.data = result);
   }
-  
+
   posterior() {
     if (this.page < this.maxpage) {
       ++this.page;
