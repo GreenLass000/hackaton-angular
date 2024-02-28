@@ -10,7 +10,10 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor() { }
+  constructor() {
+    this.loginForm = new FormGroup({});
+  }
+  
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
