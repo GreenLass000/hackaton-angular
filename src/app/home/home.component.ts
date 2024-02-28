@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { ReqresService } from '../reqres.service';
 
 
@@ -14,17 +14,23 @@ import { ReqresService } from '../reqres.service';
 export class HomeComponent {
   userLogin: any;
   data: any;
+page:any;
   constructor(private router: Router, private reqres: ReqresService) {
     this.userLogin = localStorage.getItem("user");
 
     if (this.userLogin == null) {
       this.router.navigateByUrl("/login");
-      //console.log("login "+this.userLogin);
     } else {
-      this.reqres.retornarTodos(1).subscribe(result => {this.data = result; console.log(result)});
-      
+      this.reqres.retornarTodos(1).subscribe(result => this.data = result);
+
     }
   }
 
+  borrar(id: number) {
+
+  }
+  editar(id: number) {
+
+  }
 
 }

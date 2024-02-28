@@ -1,5 +1,16 @@
-<div>
+<div class="container">
     @for(user of data; track user.id){
-        <p>{{user.first_name}}</p>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{user.avatar}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
+              <p class="card-text">{{user.email}}</p>
+            </div>
+            
+            <div class="card-body">
+              <a (click)="borrar(user.id)" class="card-link">Borrar</a>
+              <a (click)="editar(user.id)" class="card-link">Editar</a>
+            </div>
+          </div>
     }
 </div>
