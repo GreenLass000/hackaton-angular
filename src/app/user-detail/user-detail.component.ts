@@ -16,7 +16,11 @@ export class UserDetailComponent {
     this.usuario=this.usuarioUnicoSErvicio.retornarUno(2);
   }
 
-  btnClick() {
+  btnLogin() {
     this.router.navigateByUrl('/login');
   };
+
+  btnHome(){
+    this.router.navigateByUrl('/home');
+  }
 }
