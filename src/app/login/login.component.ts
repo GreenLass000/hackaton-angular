@@ -1,19 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  checkLogin() {
-    let user: string | null = localStorage.getItem("user");
-    console.log(user);
+export class LoginComponent implements OnInit {
+
+  loginForm: FormGroup;
+
+  constructor() { }
+
+  ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      correo: new FormControl('', [Validators.required, Validators.email]),
+      contrasena: new FormControl('', [Validators.required, Validators.minLength(8)])
+    });
   }
 
-  login_click() {
-    this.checkLogin();
+  onSubmit(): void {
+    // Enviar datos del formulario al backend
+    console.log(this.loginForm.value);
   }
+
 }
