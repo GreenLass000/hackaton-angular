@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,12 @@ export class ReqresService {
 
   // Consultar todos los usuarios
   retornarTodos(pagina: number) {
-    return this.http.get(`https://reqres.in/api/users?page=${pagina}`);
+    // let consulta=this.http.get(`https://reqres.in/api/users?page=${pagina}`);
+
+    // return consulta.data;
+    return this.http.get(`https://reqres.in/api/users?page=${pagina}`).pipe(
+      map((response: any) => response.data) // Mapear el resultado para devolver solo la propiedad 'data'
+    );
   }
 
   // Consultar un unico usuario
