@@ -1,6 +1,6 @@
 <div class="cabecera">
     <h1>Prueba técnica</h1>
-    <button (click)="btnClick()">Salir</button>
+    <button (click)="btnLogin()">Salir</button>
 </div>
 <div class="datos">
     @for(usur of usuario;track $index){
@@ -11,6 +11,7 @@
             <h1>{{usur.first_name}}</h1>
             <hr>
             <button>{{usur.email}}</button>
+            <button (click)="btnHome()">Home</button>
         </div>
     }
 </div>
