@@ -1,39 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  template: `
-    <main class="form-signin w-100 m-auto">
-      <form (ngSubmit)="onSubmit()">
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
-        <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="email">
-          <label for="floatingInput">Email address</label>
-        </div>
-        <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="password">
-          <label for="floatingPassword">Password</label>
-        </div>
-
-        <div class="form-check text-start my-3">
-          <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" [(ngModel)]="rememberMe">
-          <label class="form-check-label" for="flexCheckDefault">
-            Remember me
-          </label>
-        </div>
-        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-body-secondary">&copy; 2017-2024</p>
-      </form>
-    </main>
-  `
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  email: string = '';
-  password: string = '';
-  rememberMe: boolean = false;
+export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { }
+
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
 
   onSubmit() {
-    // Implementar lógica de inicio de sesión
+    if (this.loginForm.valid) {
+      console.log('Form submitted!');
+      console.log(this.loginForm.value);
+      // Aquí puedes enviar los datos del formulario a tu backend o realizar otras acciones.
+    } else {
+      console.log('Form invalid');
+    }
   }
 }
