@@ -3,15 +3,13 @@
     <button (click)="btnLogin()">Salir</button>
 </div>
 <div class="datos">
-    @for(usur of usuario;track $index){
         <div>
-            <img src="{{usur.avatar}}" alt="{{usur.id}}">
+            <img src="{{usuario.avatar}}" alt="{{usuario.id}}">
         </div>
         <div>
-            <h1>{{usur.first_name}}</h1>
+            <h1>{{usuario.first_name}}</h1>
             <hr>
-            <button>{{usur.email}}</button>
+            <button>{{usuario.email}}</button>
             <button (click)="btnHome()">Home</button>
         </div>
-    }
 </div>
