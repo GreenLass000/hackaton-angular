@@ -30,9 +30,7 @@ export class LoginComponent implements OnInit {
 
     this.reqresService.getLoginToken(this.email, this.password).subscribe({
       next: (response) => {
-        // Almacenar el token y otros datos de la respuesta
-        console.log('Inicio de sesión exitoso', response);
-        // Redirigir a la página principal o al siguiente paso
+        localStorage.setItem("user", response);
       },
       error: (error) => {
         this.errorMessage = error.message;

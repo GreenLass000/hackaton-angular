@@ -16,7 +16,7 @@ export class ReqresService {
    * @param pass Contraseña
    * @returns Token de acces
    */
-  login(email: string, password: string): Observable<any> {
+  getLoginToken(email: string, password: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
